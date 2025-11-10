@@ -132,7 +132,7 @@ export default function Index() {
             <div className="flex items-center space-x-2">
               <Icon name="Sprout" className="text-primary" size={32} />
               <div>
-                <h1 className="text-2xl font-bold text-primary">СадЭко</h1>
+                <h1 className="text-2xl font-bold text-primary">КФХ Бракнис</h1>
                 <p className="text-xs text-muted-foreground">КФХ по продаже саженцев</p>
               </div>
             </div>
