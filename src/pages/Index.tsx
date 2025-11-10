@@ -439,7 +439,7 @@ export default function Index() {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-2">Сроки доставки</h4>
-                    <p className="text-muted-foreground">3-7 дней в зависимости от региона</p>
+                    <p className="text-muted-foreground">1-2 дня</p>
                   </div>
                 </CardContent>
               </Card>
