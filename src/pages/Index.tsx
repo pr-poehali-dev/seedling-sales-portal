@@ -709,7 +709,7 @@ export default function Index() {
               <h4 className="font-semibold mb-4">Контакты</h4>
               <ul className="space-y-2 text-green-100">
                 <li>+7 (800) 555-35-35</li>
-                <li>info@sadeko.ru</li>
+                <li>braknis-vlad@mail.ru</li>
                 <li>Пн-Пт: 9:00-18:00</li>
               </ul>
             </div>
