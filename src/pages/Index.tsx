@@ -508,7 +508,7 @@ export default function Index() {
                     <Icon name="MapPin" className="text-primary mt-1" />
                     <div>
                       <p className="font-semibold">Адрес питомника</p>
-                      <p className="text-muted-foreground">Московская область, Раменский район, деревня Зеленая</p>
+                      <p className="text-muted-foreground">Приморский край, г. Владивосток, ул. Тульская д.10</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
