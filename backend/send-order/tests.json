@@ -1,0 +1,39 @@
+{
+  "tests": [
+    {
+      "name": "Handle OPTIONS request for CORS",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": "",
+      "bodyMatcher": "exact"
+    },
+    {
+      "name": "Send order with valid data",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "customerName": "Иван Иванов",
+        "customerEmail": "test@example.com",
+        "customerPhone": "+7 900 123-45-67",
+        "customerAddress": "г. Москва, ул. Тестовая, д. 1",
+        "items": [
+          {
+            "name": "Яблоня Антоновка",
+            "price": 850,
+            "quantity": 2
+          }
+        ],
+        "totalPrice": 1700,
+        "deliveryCost": 500,
+        "finalPrice": 2200
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "message": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

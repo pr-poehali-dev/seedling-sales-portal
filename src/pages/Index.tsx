@@ -5,6 +5,10 @@ import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import { toast } from '@/hooks/use-toast';
 
@@ -86,6 +90,14 @@ export default function Index() {
   const [cart, setCart] = useState<{ plant: Plant; quantity: number }[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeSection, setActiveSection] = useState('home');
+  const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderForm, setOrderForm] = useState({
+    customerName: '',
+    customerEmail: '',
+    customerPhone: '',
+    customerAddress: ''
+  });
 
   const addToCart = (plant: Plant) => {
     const existing = cart.find(item => item.plant.id === plant.id);
@@ -214,7 +226,7 @@ export default function Index() {
                       </div>
                     </div>
                     
-                    <Button className="w-full" size="lg">
+                    <Button className="w-full" size="lg" onClick={() => setIsOrderDialogOpen(true)} disabled={cart.length === 0}>
                       Оформить заказ
                     </Button>
                   </div>
@@ -543,6 +555,135 @@ export default function Index() {
           </div>
         </section>
       )}
+
+      <Dialog open={isOrderDialogOpen} onOpenChange={setIsOrderDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Оформление заказа</DialogTitle>
+            <DialogDescription>
+              Заполните контактные данные для оформления заказа
+            </DialogDescription>
+          </DialogHeader>
+          
+          <form onSubmit={async (e) => {
+            e.preventDefault();
+            setIsSubmitting(true);
+            
+            try {
+              const orderData = {
+                ...orderForm,
+                items: cart.map(item => ({
+                  name: item.plant.name,
+                  price: item.plant.price,
+                  quantity: item.quantity
+                })),
+                totalPrice,
+                deliveryCost,
+                finalPrice
+              };
+              
+              const response = await fetch('https://functions.poehali.dev/a8cd6d9f-05f5-423a-b9fc-289cf8cb0137', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderData)
+              });
+              
+              if (!response.ok) {
+                throw new Error('Failed to send order');
+              }
+              
+              toast({
+                title: 'Заказ отправлен!',
+                description: 'Мы свяжемся с вами в ближайшее время',
+              });
+              
+              setCart([]);
+              setIsOrderDialogOpen(false);
+              setOrderForm({
+                customerName: '',
+                customerEmail: '',
+                customerPhone: '',
+                customerAddress: ''
+              });
+            } catch (error) {
+              toast({
+                title: 'Ошибка',
+                description: 'Не удалось отправить заказ. Попробуйте позже.',
+                variant: 'destructive'
+              });
+            } finally {
+              setIsSubmitting(false);
+            }
+          }} className="space-y-4">
+            <div>
+              <Label htmlFor="name">Ваше имя *</Label>
+              <Input
+                id="name"
+                required
+                value={orderForm.customerName}
+                onChange={(e) => setOrderForm({...orderForm, customerName: e.target.value})}
+                placeholder="Иван Иванов"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="email">Email *</Label>
+              <Input
+                id="email"
+                type="email"
+                required
+                value={orderForm.customerEmail}
+                onChange={(e) => setOrderForm({...orderForm, customerEmail: e.target.value})}
+                placeholder="example@mail.ru"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="phone">Телефон *</Label>
+              <Input
+                id="phone"
+                required
+                value={orderForm.customerPhone}
+                onChange={(e) => setOrderForm({...orderForm, customerPhone: e.target.value})}
+                placeholder="+7 900 123-45-67"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="address">Адрес доставки *</Label>
+              <Textarea
+                id="address"
+                required
+                value={orderForm.customerAddress}
+                onChange={(e) => setOrderForm({...orderForm, customerAddress: e.target.value})}
+                placeholder="Город, улица, дом, квартира"
+                rows={3}
+              />
+            </div>
+            
+            <div className="pt-4 border-t space-y-2">
+              <div className="flex justify-between text-sm">
+                <span>Товары:</span>
+                <span>{totalPrice} ₽</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span>Доставка:</span>
+                <span>{deliveryCost === 0 ? 'Бесплатно' : `${deliveryCost} ₽`}</span>
+              </div>
+              <div className="flex justify-between text-lg font-bold">
+                <span>Итого:</span>
+                <span>{finalPrice} ₽</span>
+              </div>
+            </div>
+            
+            <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+              {isSubmitting ? 'Отправка...' : 'Отправить заказ'}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
 
       <footer className="bg-green-900 text-white py-12 mt-20">
         <div className="container mx-auto px-4">
