@@ -494,7 +494,7 @@ export default function Index() {
                     <Icon name="Phone" className="text-primary mt-1" />
                     <div>
                       <p className="font-semibold">Телефон</p>
-                      <p className="text-muted-foreground">+7 (800) 555-35-35</p>
+                      <p className="text-muted-foreground">+7 (951) 000-70-05</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
