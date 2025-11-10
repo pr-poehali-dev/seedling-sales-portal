@@ -309,7 +309,7 @@ export default function Index() {
                     <Icon name="Truck" size={32} className="text-white" />
                   </div>
                   <h4 className="text-xl font-semibold mb-2">Доставка</h4>
-                  <p className="text-muted-foreground">Бережная доставка по всей России, бесплатно от 5000 ₽</p>
+                  <p className="text-muted-foreground">Бережная доставка по всему Приморскому краю</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
