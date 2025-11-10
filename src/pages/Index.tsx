@@ -501,7 +501,7 @@ export default function Index() {
                     <Icon name="Mail" className="text-primary mt-1" />
                     <div>
                       <p className="font-semibold">Email</p>
-                      <p className="text-muted-foreground">info@sadeko.ru</p>
+                      <p className="text-muted-foreground">braknis-vlad@mail.ru</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
