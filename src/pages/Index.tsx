@@ -133,7 +133,7 @@ export default function Index() {
               <Icon name="Sprout" className="text-primary" size={32} />
               <div>
                 <h1 className="text-2xl font-bold text-primary">КФХ Бракнис</h1>
-                <p className="text-xs text-muted-foreground">КФХ по продаже саженцев</p>
+                <p className="text-xs text-muted-foreground">Саженцы из питомника</p>
               </div>
             </div>
             
@@ -318,7 +318,7 @@ export default function Index() {
             <h2 className="text-4xl font-bold mb-8">О нашем хозяйстве</h2>
             <div className="prose prose-lg max-w-none">
               <p className="text-lg mb-4">
-                КФХ "СадЭко" занимается выращиванием плодовых деревьев и ягодных кустарников с 2010 года. 
+                КФХ "Бракнис" занимается выращиванием плодовых деревьев и ягодных кустарников с 2010 года. 
                 Наше хозяйство расположено в экологически чистом районе, что гарантирует высокое качество саженцев.
               </p>
               <p className="text-lg mb-4">
@@ -550,7 +550,7 @@ export default function Index() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Icon name="Sprout" size={28} />
-                <h3 className="text-xl font-bold">СадЭко</h3>
+                <h3 className="text-xl font-bold">КФХ Бракнис</h3>
               </div>
               <p className="text-green-100">Качественные саженцы для вашего сада</p>
             </div>
@@ -574,7 +574,7 @@ export default function Index() {
             </div>
           </div>
           <div className="border-t border-green-800 mt-8 pt-8 text-center text-green-200">
-            <p>&copy; 2024 СадЭко. Все права защищены.</p>
+            <p>&copy; 2024 КФХ Бракнис. Все права защищены.</p>
           </div>
         </div>
       </footer>
