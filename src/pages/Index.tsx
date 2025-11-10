@@ -430,12 +430,12 @@ export default function Index() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <h4 className="font-semibold mb-2">Бесплатная доставка</h4>
-                    <p className="text-muted-foreground">При заказе от 5000 ₽ доставка по всей России бесплатна</p>
+                    <h4 className="font-semibold mb-2"></h4>
+                    <p className="text-muted-foreground"></p>
                   </div>
                   <div>
                     <h4 className="font-semibold mb-2">Стандартная доставка</h4>
-                    <p className="text-muted-foreground">При заказе до 5000 ₽ стоимость доставки составляет 500 ₽</p>
+                    <p className="text-muted-foreground">Стоимость доставки составляет от 5000 руб.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold mb-2">Сроки доставки</h4>
